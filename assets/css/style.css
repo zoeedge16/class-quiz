@@ -16,9 +16,19 @@ section {
     justify-content: center;
 }
 
+body {
+    background-color: lightblue;
+    color: black;
+}
+
+a {
+    margin-left: 10px;
+}
+
 .timer {
     display: flex;
     justify-content: flex-end;
+    margin-right: 20px;
 }
 
 .quiz,
