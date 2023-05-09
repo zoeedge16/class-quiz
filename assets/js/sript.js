@@ -30,13 +30,16 @@ submitBtn.addEventListener ('click', function () {
 
 // making the timer 
 
-const downloadTimer = setInterval( 
-    () => {
-        if (secondsLeft <= 0) {
-        clearInterval(downloadTimer);
-        };
-        remainingTimeEL.value = secondsLeft;
-        remainingTimeEL.textContent = secondsLeft;
-        secondsLeft -= 1;
-},
-1000)
+startBtn.addEventListener ('click', function() {
+    const downloadTimer = setInterval( 
+        () => {
+            if (secondsLeft <= 0) {
+            clearInterval(downloadTimer);
+            };
+            remainingTimeEL.value = secondsLeft;
+            remainingTimeEL.textContent = secondsLeft;
+            secondsLeft -= 1;
+    },
+    1000);
+    
+});
