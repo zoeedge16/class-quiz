@@ -8,7 +8,8 @@ header {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-section {
+#start,
+#end {
     display: flex;
     height: 100vh;
     width: 100vw;
@@ -19,6 +20,7 @@ section {
 body {
     background-color: lightblue;
     color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 a {
@@ -31,7 +33,27 @@ a {
     margin-right: 20px;
 }
 
-.quiz,
-.end {
+#quiz {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.coding-quiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px 0px 0px 0px;
+    
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px 0px 0px;
+}
+
+#next-btn {
+    margin: 20px 0px 0px 0px;
     display: none;
 }
