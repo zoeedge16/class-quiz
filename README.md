@@ -16,9 +16,9 @@ THEN I can save my initials and score
 
 ## Depository
 
-[Deployed]()
+[Deployed](http://127.0.0.1:5500/index.html)
 
-[Repository]()
+[Repository](https://github.com/zoeedge16/class-quiz)
 
 ## Screenchot
-![screenshot]()
+![screenshot](./assets/images/Class%20Quiz.mp4)
