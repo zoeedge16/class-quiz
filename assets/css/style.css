@@ -77,3 +77,8 @@ a {
 .incorrect {
     background-color: red;
 }
+
+.form {
+    display: flex;
+    justify-content: flex-end;
+}

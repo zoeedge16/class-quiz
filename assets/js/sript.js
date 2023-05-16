@@ -1,51 +1,64 @@
 // variables for switching between screens
 var startBtn = document.querySelector('#start-btn');
-var answerBtn = document.querySelector('.submit-all');
+var enterBtn = document.querySelector('.submit-all');
 var submitBtn = document.querySelector('.submit');
 var startEl = document.querySelector('#start');
 var quizEl = document.querySelector('#quiz');
 var endEl = document.querySelector('#end');
-// Should i put let or var?
-// variables for timer
-let remainingTimeEL = document.querySelector('#remainingTime');
-var secondsLeft = 100;
-
-// variables for questions
-// var questionOne = document.querySelector('.question-one')
-// var questionTwo = document.querySelector('.question-two')
-// var questionThree = document.querySelector('.question-three')
-// var questionFour = document.querySelector('.question-four')
-// var questionOneEl = document.querySelector('#one')
-// var questionTwoEl = document.querySelector('#two')
-// var questionThreeEl = document.querySelector('#three')
-// var questionFourEl = document.querySelector('#four')
+var scoreEl = document.querySelector('.scores')
+var formEl = document.querySelector('#form')
+var submitEl = document.querySelector('#submit')
 
 // the eventLiteners that allow the switch between start, quiz, and end.
 startBtn.addEventListener ('click', function () {
     startEl.style.display = 'none';
     quizEl.style.display = null;
     endEl.style.display = 'none';
+    scoreEl.style.display = 'none';
+    updateCountDown();
 });
 
-answerBtn.addEventListener ('click', function () {
+enterBtn.addEventListener ('click', function () {
     startEl.style.display = 'none';
     quizEl.style.display = 'none';
     endEl.style.display = null;
+    scoreEl.style.display = 'none';
+    clearInterval(downloadTimer);
 });
 
-submitBtn.addEventListener ('click', function () {
+submitEl.addEventListener ('click', function () {
     startEl.style.display = null;
     quizEl.style.display = 'none';
     endEl.style.display = 'none';
+    formEl.style.display = null;
+    scoreEl.style.display = 'none';
 });
+
+scoreEl.addEventListener ('click', function () {
+    startEl.style.display = 'none';
+    quizEl.style.display = 'none';
+    endEl.style.display = null;
+})
+
+// timer var
+
+let remainingTimeEL = document.querySelector('#remainingTime');
+var secondsLeft = 60;
+let downloadTimer;
 
 // making the timer 
 
-startBtn.addEventListener ('click', function timer() {
-    var downloadTimer = setInterval( 
+function updateCountDown() {
+    downloadTimer = setInterval( 
         () => {
             if (secondsLeft <= 0) {
             clearInterval(downloadTimer);
+            questionEl.style.display = 'none';
+            enterBtn.style.display = 'none';
+            scoreEl.style.display = 'block';
+            showScore();
+            } else {
+                stop(downloadTimer);
             };
             remainingTimeEL.value = secondsLeft;
             remainingTimeEL.textContent = secondsLeft;
@@ -53,8 +66,8 @@ startBtn.addEventListener ('click', function timer() {
     },
     1000);
     
-});
- 
+};
+
 // quiz questions
 const questions = [
     {
@@ -98,6 +111,8 @@ var questionEl = document.querySelector('.question')
 var answerBtn = document.querySelector('#answer');
 var nextBtn = document.querySelector('#next-btn');
 let currentIndexQuestion = 0;
+var selectedBtn;
+var isCorrect;
 // score will probably = time
 let score = 0;
 
@@ -115,7 +130,6 @@ function startQuiz(){
 function showQuestion(){
     resetState();
     let currentQuestion = questions[currentIndexQuestion];
-    // do + time maybe?
     let questionNum = currentIndexQuestion + 1;
     questionEl.innerHTML = questionNum + '. ' + currentQuestion.question;
 
@@ -139,19 +153,22 @@ function resetState() {
     }
 }
 
-// this function allows for the selection of the correct answer.
+// this function allows for the selection of the correct answer and the score to count up
 function selectAnswer(e){
-    var selectedBtn = e.target;
-    var isCorrect = selectedBtn.dataset.correct === 'true';
+    selectedBtn = e.target;
+    isCorrect = selectedBtn.dataset.correct === 'true';
     if (isCorrect) {
         selectedBtn.classList.add('correct');
+        score++;
     } else {
         selectedBtn.classList.add('incorrect');
+        secondsLeft -= 5;
+
     }
     Array.from(answerBtn.children).forEach(button => {
         if(button.dataset.correct === 'true') {
             button.classList.add('correct');
-        }
+        };
         button.disabled = 'true'
     });
     nextBtn.style.display = 'block';
@@ -160,7 +177,7 @@ function selectAnswer(e){
 // this function will show the score 
 function showScore() {
     resetState();
-    submitBtn.innerHTML = "Highscores";
+    submitBtn.innerHTML = 'Your score is ' + Math.floor(score + secondsLeft) + ' . Enter Initials and score here: ';
 }
 
 // this function allows you to click from question to question 
@@ -169,6 +186,7 @@ function handleNextButton() {
     if (currentIndexQuestion < questions.length) {
         showQuestion();
     } else {
+        questionEl.style.display = 'none';
         showScore();
     }
 }
@@ -178,4 +196,15 @@ nextBtn.addEventListener( 'click', () => {
         handleNextButton()
     }
 })
+
 startQuiz();
+
+
+// making timer apart of my score 
+
+
+
+// setting up local storage
+
+localStorage.setItem();
+localStorage.setItem();
