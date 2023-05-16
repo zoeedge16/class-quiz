@@ -20,5 +20,5 @@ THEN I can save my initials and score
 
 [Repository](https://github.com/zoeedge16/class-quiz)
 
-## Screenchot
-![screenshot](./assets/images/Class%20Quiz.mp4)
+## Preview
+[video](https://www.awesomescreenshot.com/video/17432401?key=85a866b05044b1d8bbb7831f267dd241)
